@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+{% include 'head.html' %}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper boxed-wrapper">
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="index.html" class="logo blue-bg">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+        {% load static %}
+    <span class="logo-mini"><img src="{% static "images/logo.png" %}" alt=""></span>
+    <!-- logo for regular state and mobile devices -->
+        {% load static %}
+    <span class="logo-lg"><img width="150" src={% static "images/logo.png" %} alt=""></span> </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar blue-bg navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <ul class="nav navbar-nav pull-left">
+        <li><a class="sidebar-toggle" data-toggle="push-menu" href=""></a> </li>
+      </ul>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="{% static "images/DSCN2572.JPG" %}" class="user-image" alt="User Image"> <span class="hidden-xs">{{ user.username }}</span> </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <p class="text-left">{{ user.username }} <small>{{ user.username }}</small> </p>
+                <div class="view-link text-left"><a href="#">View Profile</a> </div>
+              </li>
+              <li><a href="{% url "logout" %}"><i class="fa fa-power-off"></i> Deconnection</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <div class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="image text-center"><img src="{% static "dist/img/img1.jpg" %}" class="img-circle" alt="User Image"> </div>
+        <div class="info">
+          <p>Alexander Pierce</p>
+          <a href="#"><i class="fa fa-cog"></i></a> <a href="#"><i class="fa fa-envelope-o"></i></a> <a href="#"><i class="fa fa-power-off"></i></a> </div>
+      </div>
+
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">PERSONAL</li>
+        <li class="a"> <a href='{% url 'home' %}'> <i class="fa fa-dashboard"></i> <span>Acceuil</span> <span class="pull-right-container"></span> </a>
+        </li>
+        <li class="treeview"> <a href="#"> <i class="fa fa-bullseye"></i> <span>Etudiants</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu">
+            <li><a href='{% url 'listEtudiants' %}'>Nouvelle Inscription</a></li>
+            <li><a href='{% url 'listEtudiants' %}'>Tous les etudiants</a></li>
+          </ul>
+        </li>
+          {% if user.username == "admin" %}
+        <li class="treeview"> <a href="#"> <i class="fa fa-envelope-o "></i> <span>Configuration</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'createFiliaire' %}">Ajouter Filiaire</a></li>
+            <li><a href="apps-mailbox-detail.html">Ajouter Niveaux</a></li>
+                   <li><a href="{% url 'createAccount' %}">Nouveau sécretaire</a></li>
+
+
+          </ul>
+        </li>
+           {% endif %}
+      </ul>
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+        {% block contenu %}
+
+        {% endblock contenu %}
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.2</div>
+    Copyright © 2017 Yourdomian. All rights reserved.</footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="{% static "dist/js/jquery.min.js" %}"></script>
+
+<!-- v4.0.0-alpha.6 -->
+{% load static %}
+<script src="{%  static "dist/bootstrap/js/bootstrap.min.js" %}"></script>
+
+<!-- template -->
+<script src="{% static "dist/js/niche.js" %}"></script>
+
+<!-- Chartjs JavaScript -->
+<script src="{% static "dist/plugins/chartjs/chart.min.js" %}"></script>
+<script src="{% static "dist/plugins/chartjs/chart-int.js" %}"></script>
+
+<!-- Chartist JavaScript -->
+<script src="{% static "dist/plugins/chartist-js/chartist.min.js" %}"></script>
+<script src="{% static "dist/plugins/chartist-js/chartist-plugin-tooltip.js" %}"></script>
+<script src="{% static "dist/plugins/functions/chartist-init.js" %}"></script>
+<script>
+
+    var elements = document.getElementsByClassName('clickable');
+for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
+    element.addEventListener('click', function() {
+        var href = this.dataset.href;
+        if (href) {
+            window.location.assign(href);
+        }
+    });
+}
+</script>
+
+<script>
+    function printCarteEtudiant(el){
+        var restorepage = document.body.innerHTML;
+        var printContent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = restorepage;
+    }
+</script>
+
+
+
+
+    <!-- Jquery JS-->
+    <script src="{% static "dist/js/jquery.min.js" %}" rel="stylesheet"></script>
+    <!-- Vendor JS-->
+    <script src="{% static "dist/js/registerFormjs/select2/select2.min.js" %}" rel="stylesheet"></script>
+    <script src="{% static "dist/js/registerFormjs/datepicker/moment.min.js" %}"></script>
+
+    <script src="{% static "dist/js/registerFormjs/datepicker/daterangepicker.js" %}" rel="stylesheet"></script>
+
+    <!-- Main JS-->
+    <script src="{% static "dist/js/registerFormjs/global.js" %}"></script>
+<script>
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 1000);
+</script>
+</div>
+</body>
+</html>
