@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'front',
     'niveaux',
-    'filiaire'
+    'filiaire',
+    'Contact'
 ]
 
 MIDDLEWARE = [

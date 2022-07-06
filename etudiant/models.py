@@ -5,6 +5,7 @@ import secrets
 from django import forms
 
 from filiaire.models import Filiaire
+from gestionEtudiant import settings
 from niveaux.models import Niveau
 
 

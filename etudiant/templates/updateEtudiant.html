@@ -34,7 +34,7 @@
                                     <label class="label">Date de naissance</label>
                                     <div class="input-group-icon">
                                         <label>
-                                            <input value="{{ currentEtudiant.birthday }}" class="input--style-4 js-datepicker" type="text" name="birthday">
+                                            <input class="input--style-4 js-datepicker" type="text" name="birthday">
                                         </label>
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
@@ -326,8 +326,8 @@
                             <label class="label">Filiere</label>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <label>
-                                    <select name="filiaire" value=1>
-                                        <option value="{{ currentEtudiant.filiaire }}" selected="selected">{{ currentEtudiant.filiaire }}</option>
+                                    <select name="ref_filiaire" value=1>
+                                        <option value="{{ currentEtudiant.ref_filiaire.id }}" selected="selected">{{ currentEtudiant.ref_filiaire.name }}</option>
                                         {% for filiaire in filiaires %}
                                             <option value="{{ filiaire.id }}">{{ filiaire.name }}</option>
                                         {% endfor %}
@@ -340,8 +340,8 @@
                             <label class="label">Niveaux</label>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <label>
-                                    <select name="niveau" value=1>
-                                        <option value="{{ currentEtudiant.niveau }}" selected="selected">{{ currentEtudiant.niveau }}</option>
+                                    <select name="ref_niveau" value=1>
+                                        <option value="{{ currentEtudiant.ref_niveau.id }}" selected="selected">{{ currentEtudiant.ref_niveau.name }}</option>
                                         {% for niveau in niveaux %}
                                              <option value="{{ niveau.id }}">{{niveau.name}}</option>
                                         {% endfor %}
@@ -368,6 +368,5 @@
 {% endblock contenu %}
 
 <script type="text/javascript">
-document.getElementById('prenom').value = {{ currentEtudiant.prenom }};
-document.getElementById('name').value = "{{ currentEtudiant.name }}";
+document.getElementById('js-datepicker').valueAsDate = new Date();
 </script>

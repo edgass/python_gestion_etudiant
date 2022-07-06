@@ -1,5 +1,7 @@
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
+from datetime import datetime
 
 # Create your views here.
 from accounts.views import seConnecter
@@ -31,6 +33,10 @@ def singleEtudiant(request, slug):
     etudiant = get_object_or_404(Etudiant, id=slug)
     return render(request, "singleEtudiant.html", context={"etudiant": etudiant})
 
+def singleEtudiantForEtudiant(request, slug):
+    etudiant = get_object_or_404(Etudiant, id=slug)
+    return render(request, "singleEtudiantForEtudiant.html", context={"etudiant": etudiant})
+
 
 def inscriptionEtudiant(request):
     niveau = Niveau.objects.all()
@@ -39,9 +45,11 @@ def inscriptionEtudiant(request):
         form = EtudiantForm(request.POST, request.FILES)
         print("printing post : ", request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('home')
-        else:
+            etd = form.save()
+            etudiant = get_object_or_404(Etudiant, id=etd.id)
+            return render(request, "singleEtudiantForEtudiant.html", context={"etudiant": etudiant})
+
+    else:
             if request.POST.get('prenom') == '':
                 messages.info(request, 'Le champ prénom ne doit pas etre vide')
             else:
@@ -58,8 +66,7 @@ def updateEtudiant(request,pk):
     niveaux = Niveau.objects.all()
     filiaires = Filiaire.objects.all()
     if request.method == "POST":
-        form = EtudiantForm(request.POST, request.FILES, instance=currentEtudiant)
-        form.save()
+        Etudiant.objects.filter(pk=pk).update(name=request.POST.get('name'), prenom=request.POST.get('prenom'), birthday=datetime.now(), ref_niveau=request.POST.get('ref_niveau'), ref_filiaire=request.POST.get('ref_filiaire'))
         return redirect('/home')
 
     return render(request, "updateEtudiant.html", context={"niveaux": niveaux, "filiaires": filiaires, "currentEtudiant": currentEtudiant})

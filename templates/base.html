@@ -56,7 +56,6 @@
         </li>
         <li class="treeview"> <a href="#"> <i class="fa fa-bullseye"></i> <span>Etudiants</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
-            <li><a href='{% url 'listEtudiants' %}'>Nouvelle Inscription</a></li>
             <li><a href='{% url 'listEtudiants' %}'>Tous les etudiants</a></li>
           </ul>
         </li>
@@ -64,7 +63,7 @@
         <li class="treeview"> <a href="#"> <i class="fa fa-envelope-o "></i> <span>Configuration</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
             <li><a href="{% url 'createFiliaire' %}">Ajouter Filiaire</a></li>
-            <li><a href="apps-mailbox-detail.html">Ajouter Niveaux</a></li>
+            <li><a href="{% url 'createNiveau' %}">Ajouter Niveaux</a></li>
                    <li><a href="{% url 'createAccount' %}">Nouveau sécretaire</a></li>
 
 
@@ -84,8 +83,8 @@
         {% endblock contenu %}
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">Version 1.2</div>
-    Copyright © 2017 Yourdomian. All rights reserved.</footer>
+    <div class="pull-right hidden-xs">Python Bourguiba</div>
+    Copyright © 2022 Yadaly et Ababacar Ka. Tous droits résérvés.</footer>
 </div>
 <!-- ./wrapper -->
 

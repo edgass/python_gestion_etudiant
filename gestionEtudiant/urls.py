@@ -17,11 +17,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
+from Contact.views import contact
 from accounts.views import logout_user, seConnecter, createAccount
-from etudiant.views import home, listEtudiants, singleEtudiant, inscriptionEtudiant, updateEtudiant, deleteEtudiant
+from etudiant.views import home, listEtudiants, singleEtudiant, inscriptionEtudiant, updateEtudiant, deleteEtudiant, \
+    singleEtudiantForEtudiant
 from filiaire.views import createFiliaire
 from front.views import front
 from gestionEtudiant import settings
+from niveaux.views import createNiveau
 
 urlpatterns = [
     path('', front, name='front'),
@@ -34,6 +37,9 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('listEtudiants/', listEtudiants, name='listEtudiants'),
     path('etudiant/<int:slug>/', singleEtudiant, name="etudiant"),
+    path('etudiantEtudiant/<int:slug>/', singleEtudiantForEtudiant, name="etudiantForEtudiant"),
     path('createFiliaire/', createFiliaire, name="createFiliaire"),
+    path('createNiveau/', createNiveau, name="createNiveau"),
     path('admin/', admin.site.urls),
+    path('contact/', contact, name="contact"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
