@@ -22,6 +22,7 @@ from accounts.views import logout_user, seConnecter, createAccount
 from etudiant.views import home, listEtudiants, singleEtudiant, inscriptionEtudiant, updateEtudiant, deleteEtudiant, \
     singleEtudiantForEtudiant
 from filiaire.views import createFiliaire
+from formation.views import formation
 from front.views import front
 from gestionEtudiant import settings
 from niveaux.views import createNiveau
@@ -42,4 +43,5 @@ urlpatterns = [
     path('createNiveau/', createNiveau, name="createNiveau"),
     path('admin/', admin.site.urls),
     path('contact/', contact, name="contact"),
+    path('nosFormations/', formation, name="formations"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

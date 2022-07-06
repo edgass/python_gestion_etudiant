@@ -25,6 +25,7 @@ class Etudiant(models.Model):
     photo = models.ImageField(upload_to="etudiantProfil")
     ref_filiaire = models.ForeignKey(Filiaire, on_delete=models.CASCADE)
     ref_niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE)
+    adresse = models.CharField(max_length=128)
 
     def __str__(self):
         return self.prenom

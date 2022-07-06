@@ -66,7 +66,7 @@ def updateEtudiant(request,pk):
     niveaux = Niveau.objects.all()
     filiaires = Filiaire.objects.all()
     if request.method == "POST":
-        Etudiant.objects.filter(pk=pk).update(name=request.POST.get('name'), prenom=request.POST.get('prenom'), birthday=datetime.now(), ref_niveau=request.POST.get('ref_niveau'), ref_filiaire=request.POST.get('ref_filiaire'))
+        Etudiant.objects.filter(pk=pk).update(name=request.POST.get('name'), prenom=request.POST.get('prenom'), birthday=datetime.now(), ref_niveau=request.POST.get('ref_niveau'), ref_filiaire=request.POST.get('ref_filiaire'),adresse=request.POST.get('adresse'))
         return redirect('/home')
 
     return render(request, "updateEtudiant.html", context={"niveaux": niveaux, "filiaires": filiaires, "currentEtudiant": currentEtudiant})
