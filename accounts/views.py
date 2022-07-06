@@ -44,6 +44,6 @@ def createAccount(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = User.objects.create_user(username=username, password=password)
-        login(request, user, backend=None)
+        login(request, user)
         return redirect('home')
     return render(request, 'createAccount.html')
